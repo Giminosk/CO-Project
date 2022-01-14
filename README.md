@@ -1,4 +1,4 @@
-# Combinatorial-Optimization-Lab-Project
+# Combinatorial Optimization Lab Project
 ## Heuristic algorithms (namely, Greedy and Genetic) for solving Traffic Signaling Problem 
 ### Prepared by students of WIiT, AI, 3rd Semester, SI4: Uladzimir Ivashka, 150281, and Sofya Aksenyuk, 150284
 #### Programs are written in Python 3.10
@@ -150,7 +150,11 @@ def heuristic(duration, initCars, initStreets, solution, points, initInters):
 
 - Firstly, it creates a timetable for each intersection of the solution that is currently being processed. Timetable is a list of streets that are ordered in a way green lights have been distributed so far, e.g.: for a solution `On intersectin I green light lasts 2 sec for the incoming street 1 and 1 sec for the other incoming street 2` the timetable will take a form `Inter I: [street 1, street 1, street 2]`
 - Then, within each second of the simulation duration, it checks the current state of a car and proceeds it to the next step of its path according to such conditions of it as `driving time, queue position`
-- This function is being called from the `genetic algorithm function` as `def fitness(duration, cars, streets, individual, points, inters): return heuristic(duration, cars, streets, individual, points, inters)`
+- This function is being called from the `genetic algorithm function` as
+```
+def fitness(duration, cars, streets, individual, points, inters): 
+    return heuristic(duration, cars, streets, individual, points, inters)
+```
 
 3. Main evolution loop
 
@@ -223,5 +227,5 @@ def crossOver(parent1, parent2):
 
 ### Both algorithms indeed provide efficient solutions. The choice of an algorithm should be based on your goal: whether the solution is needed to be local or global and how fast you are willing to get solutions. Main points for this: Greedy algorithm - quickly found local optimum, Genetic - quite time-consuming but global optimum.
 
-## Sources: 
-### No additional sources were used. Only our knowledge obtained during previous cources (e.g., Artificial Life and Cognitive Sciences, Algorithms and Data Structures)
+### Sources: 
+#### No additional sources were used. Only our knowledge obtained during previous cources (e.g., Artificial Life and Cognitive Sciences, Algorithms and Data Structures)
