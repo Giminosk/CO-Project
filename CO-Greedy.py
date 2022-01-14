@@ -3,8 +3,7 @@ import time
 import numpy
 
 class Street:
-    def __init__(self, id, start, end, name, duration):
-        self.id = id
+    def __init__(self, start, end, name, duration):
         self.start = start
         self.end = end
         self.name = name
@@ -34,7 +33,7 @@ def problemSimulation():
         inters[i] = Inter(i)
     for i in range(noStreets):
         data = input().split()
-        streets[data[2]] = Street(i, int(data[0]), int(data[1]), data[2], int(data[3]))
+        streets[data[2]] = Street(int(data[0]), int(data[1]), data[2], int(data[3]))
         inters[int(data[1])].incoming.append(data[2])
     for i in range(noCars):
         data = input().split()
