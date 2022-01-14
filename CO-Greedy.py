@@ -66,11 +66,8 @@ def printSolution(solution):
 def main():
     start = time.time()
     streets, duration, noInters, noStreets, noCars, bonus, cars, inters = problemSimulation()
-    resGR = greedySolution(inters)
-    printSolution(resGR)
-    # print('\n')
-    # print('\nFitness of the GENETIC solution: ', res[1], 'pts')
-    # print('\nFitness of the GREEDY solution: ', heuristic(duration, cars, streets, resGR, bonus, inters), 'pts')
+    printSolution(greedySolution(inters))
+    print('\n')
     end = time.time()
     print('Time to obtain the result: ', round(end - start, 3), 'sec')
 
