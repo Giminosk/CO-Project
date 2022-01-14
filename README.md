@@ -150,7 +150,8 @@ def heuristic(duration, initCars, initStreets, solution, points, initInters):
 
 - Firstly, it creates a timetable for each intersection of the solution that is currently being processed. Timetable is a list of streets that are ordered in a way green lights have been distributed so far, e.g.: for a solution `On intersectin I green light lasts 2 sec for the incoming street 1 and 1 sec for the other incoming street 2` the timetable will take a form `Inter I: [street 1, street 1, street 2]`
 - Then, within each second of the simulation duration, it checks the current state of a car and proceeds it to the next step of its path according to such conditions of it as `driving time, queue position`
-- This function is being called from the `genetic algorithm function` as
+- This function is being called from the genetic algorithm function as
+
 ```
 def fitness(duration, cars, streets, individual, points, inters): 
     return heuristic(duration, cars, streets, individual, points, inters)
