@@ -44,19 +44,20 @@ rue-d-athenes and then follows the given path.
 
 **The solution to the problem gets shown as _stdout_**
 
+
 ## Theoretical part (methods that were used):
 
 **As a simple approach to the problem Greedy Algorithm was used since:**
 
-> ***1)*** it is straightforward to implement
-> ***2)*** it finds local optimum
-> ***3)*** it always chooses the steps that provide immediate profit
-> ***4)*** not that time- and space-consuming
+- it is straightforward to implement
+- it finds local optimum
+- it always chooses the steps that provide immediate profit
+- not that time- and space-consuming
 
 **As a complex approach to the problem Genetic Algorithm was used since:**
 
-> ***1)*** it gives higher range of solutions by evolving solutions within the algorithm run (mutation and crossover were used)
-> ***2)*** it finds global optimum
+- it gives higher range of solutions by evolving solutions within the algorithm run (mutation and crossover were used)
+- it finds global optimum
 
 ## Implementation part:
 
@@ -76,13 +77,13 @@ def greedySolution(inters):
 
 **Explanation:**
 
-> Since the algorithm is greedy, it simply considers the first improvement, distributing 1 second for each incoming street of an intersection will already be enough for the algorithm to reach local optimum.
+- Since the algorithm is greedy, it simply considers the first improvement, distributing 1 second for each incoming street of an intersection will already be enough for the algorithm to reach local optimum.
 
 #### Genetic algorithm:
 
 **Genetic algorithm consists of several parts:**
 
-- Initial population generator part
+1. Initial population generator part
 
 ```
 def createIndividual(inters):
@@ -108,10 +109,10 @@ population = sorted(population, key=lambda x: x[1], reverse=True)
 
 **Explanation:**
 
-> The function above uses greedy approach to create an individual for its futher genetic evaluation
-> Whereas, the loop is in charge of creating an initial population in form of a list of individuals and their fitness (which gets calculated by the heuristic function below)
+- The function above uses greedy approach to create an individual for its futher genetic evaluation
+- Whereas, the loop is in charge of creating an initial population in form of a list of individuals and their fitness (which gets calculated by the heuristic function below)
 
-- Heuristic part (i.e., evaluation of a solution)
+2. Heuristic part (i.e., evaluation of a solution)
 
 ```
 def heuristic(duration, initCars, initStreets, solution, points, initInters):
@@ -147,11 +148,11 @@ def heuristic(duration, initCars, initStreets, solution, points, initInters):
 
 **Explanation:**
 
-> Firstly, it creates a timetable for each intersection of the solution that is currently being processed. Timetable is a list of streets that are ordered in a way green lights have been distributed so far, e.g.: for a solution `On intersectin I green light lasts 2 sec for the incoming street 1 and 1 sec for the other incoming street 2` the timetable will take a form `Inter I: [street 1, street 1, street 2]`
-> Then, within each second of the simulation duration, it checks the current state of a car and proceeds it to the next step of its path according to such conditions of it as `driving time, queue position`
-> This function is being called from the `genetic algorithm function` as `def fitness(duration, cars, streets, individual, points, inters): return heuristic(duration, cars, streets, individual, points, inters)`
+- Firstly, it creates a timetable for each intersection of the solution that is currently being processed. Timetable is a list of streets that are ordered in a way green lights have been distributed so far, e.g.: for a solution `On intersectin I green light lasts 2 sec for the incoming street 1 and 1 sec for the other incoming street 2` the timetable will take a form `Inter I: [street 1, street 1, street 2]`
+- Then, within each second of the simulation duration, it checks the current state of a car and proceeds it to the next step of its path according to such conditions of it as `driving time, queue position`
+- This function is being called from the `genetic algorithm function` as `def fitness(duration, cars, streets, individual, points, inters): return heuristic(duration, cars, streets, individual, points, inters)`
 
-- Main evolution loop
+3. Main evolution loop
 
 ```
 while noImprove < 5:
@@ -179,8 +180,8 @@ while noImprove < 5:
 
 **Explanation:**
 
-> The stopping criterion of the population evolution is 5 current best individuals with no improvement or exceeded time restriction
-> Firstly, a population individual gets chosen by tournament selection by the function, where the best individual out of mating pool is returned:
+- The stopping criterion of the population evolution is 5 current best individuals with no improvement or exceeded time restriction
+- Firstly, a population individual gets chosen by tournament selection by the function, where the best individual out of mating pool is returned:
 
 ```
 def tournament(population):
@@ -192,7 +193,7 @@ def tournament(population):
     return matingPool[0][0]
 ```
 
-> Then, this individual gets mutated by the function, where values of randomly selected individual intersection incoming streets get changed by a random number in the provided range:
+- Then, this individual gets mutated by the function, where values of randomly selected individual intersection incoming streets get changed by a random number in the provided range:
 
 ```
 def mutation(individual):
@@ -203,7 +204,7 @@ def mutation(individual):
     return individual
 ```
 
-> After that, two parents are selected by the same tournament function and get crossovered by the function, that returns the child of them that is formed by swapping their parts around randomly chosen cutting point (i.e., an intersection, in our case):
+- After that, two parents are selected by the same tournament function and get crossovered by the function, that returns the child of them that is formed by swapping their parts around randomly chosen cutting point (i.e., an intersection, in our case):
 
 ```
 def crossOver(parent1, parent2):
@@ -216,11 +217,11 @@ def crossOver(parent1, parent2):
     return child
 ```
 
-> Lastly, the updated with gotten children population gets sorted and rid of worst individuals in the amount of newly added individuals (in order to maintain population size stable)
+- Lastly, the updated with gotten children population gets sorted and rid of worst individuals in the amount of newly added individuals (in order to maintain population size stable)
 
-# Conclusion
+## Conclusion
 
 ### Both algorithms indeed provide efficient solutions. The choice of an algorithm should be based on your goal: whether the solution is needed to be local or global and how fast you are willing to get solutions. Main points for this: Greedy algorithm - quickly found local optimum, Genetic - quite time-consuming but global optimum.
 
-### Sources: 
-##### No additional sources were used. Only our knowledge obtained during previous cources (e.g., Artificial Life and Cognitive Sciences, Algorithms and Data Structures)
+## Sources: 
+### No additional sources were used. Only our knowledge obtained during previous cources (e.g., Artificial Life and Cognitive Sciences, Algorithms and Data Structures)
